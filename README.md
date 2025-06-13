@@ -1,3 +1,9 @@
+# CodeStats Tracker
+
+Una extensión para VS Code que rastrea el tiempo de codificación, muestra estadísticas de productividad y permite exportar tus datos.
+
+---
+
 # codestats-tracker README
 
 This is the README for your extension "codestats-tracker". After writing up a brief description, we recommend including the following sections.
