@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     100
   );
   statusBarItem.command = "codestats.viewDashboard";
-  statusBarItem.tooltip = "CodeStats: Haz clic para ver el panel";
+  statusBarItem.tooltip = "CodeStats: Click to view the dashboard";
   context.subscriptions.push(statusBarItem);
   updateStatusBar(context);
   statusBarItem.show();
@@ -197,7 +197,10 @@ class DashboardPanel {
           for (const key of allKeys) {
             allData[key] = this._context.globalState.get(key);
           }
-          this._panel.webview.postMessage({ command: "downloadData", data: allData });
+          this._panel.webview.postMessage({
+            command: "downloadData",
+            data: allData,
+          });
         }
       },
       undefined,
@@ -248,91 +251,103 @@ class DashboardPanel {
                 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} data:; script-src 'nonce-${nonce}';">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link href="${styleUri}" rel="stylesheet">
-                <title>Panel de CodeStats</title>
+                <title>Statistics Dashboard</title>
             </head>
             <body>
-                <h1>Panel de Estadísticas</h1>
-                
-                <div class="summary-cards" style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
-                  <div class="card" id="avgTimeCard"></div>
-                  <div class="card" id="topDayCard"></div>
-                  <div class="card" id="topLangCard"></div>
-                  <div class="card" id="topProjectCard"></div>
+                <h1>Statistics Dashboard</h1>
+
+              <div class="summary-cards">
+                <div class="card" id="avgTimeCard">
+                  <span class="icon">⏱️</span>
+                  <span class="text"></span>
                 </div>
-
-                <div class="container">
-                    <div class="chart-container">
-                        <h2>Tiempo de Codificación (Últimos 7 días)</h2>
-                        <canvas id="timeChart"></canvas>
-                    </div>
-
-                    <div class="chart-container">
-                        <h2>Distribución por Lenguaje (Hoy)</h2>
-                        <canvas id="langChart"></canvas>
-                    </div>
-
-                    <div class="chart-container">
-                        <h2>Distribución por Proyecto (Hoy)</h2>
-                        <canvas id="projectChart"></canvas>
-                    </div>
-
-                    <div class="chart-container">
-                      <h2>Tendencia Semanal/Mensual</h2>
-                      <canvas id="trendChart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                      <h2>Comparación de Proyectos</h2>
-                      <canvas id="compareProjectsChart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                      <h2>Comparación de Lenguajes</h2>
-                      <canvas id="compareLangsChart"></canvas>
-                    </div>
-                    <div class="chart-container" style="height:340px;">
-                      <h2>Tiempo Activo vs. Inactivo (Hoy)</h2>
-                      <canvas id="activeVsIdleChart" width="320" height="320"></canvas>
-                    </div>
+                <div class="card" id="topDayCard">
+                  <span class="icon">📅</span>
+                  <span class="text"></span>
                 </div>
-
-                <div class="table-container">
-                    <h2>Resumen Diario Detallado</h2>
-                    <table id="summaryTable">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Tiempo Total</th>
-                                <th>Proyectos</th>
-                                <th>Lenguajes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Las filas se insertarán dinámicamente -->
-                        </tbody>
-                    </table>
+                <div class="card" id="topLangCard">
+                  <span class="icon">💻</span>
+                  <span class="text"></span>
                 </div>
+                <div class="card" id="topProjectCard">
+                  <span class="icon">📁</span>
+                  <span class="text"></span>
+                </div>
+              </div>
 
-                <div class="table-container">
-                  <h2>Ranking de Días Más Productivos</h2>
-                  <table id="rankingTable">
+              <div class="container">
+                  <div class="chart-container">
+                      <h2>Coding Time (Last 7 Days)</h2>
+                      <canvas id="timeChart"></canvas>
+                  </div>
+
+                  <div class="chart-container">
+                      <h2>Language Distribution (Today)</h2>
+                      <canvas id="langChart"></canvas>
+                  </div>
+
+                  <div class="chart-container">
+                      <h2>Project Distribution (Today)</h2>
+                      <canvas id="projectChart"></canvas>
+                  </div>
+
+                  <div class="chart-container">
+                    <h2>Weekly/Monthly Trend</h2>
+                    <canvas id="trendChart"></canvas>
+                  </div>
+                  <div class="chart-container">
+                    <h2>Project Comparison</h2>
+                    <canvas id="compareProjectsChart"></canvas>
+                  </div>
+                  <div class="chart-container">
+                    <h2>Language Comparison</h2>
+                    <canvas id="compareLangsChart"></canvas>
+                  </div>
+                  <div class="chart-container" style="height:340px;">
+                    <h2>Active vs. Inactive Time (Today)</h2>
+                    <canvas id="activeVsIdleChart" width="320" height="320"></canvas>
+                  </div>
+              </div>
+
+              <div class="table-container">
+                  <h2>Detailed Daily Summary</h2>
+                  <table id="summaryTable">
                     <thead>
                       <tr>
-                        <th>Fecha</th>
-                        <th>Tiempo Total</th>
+                        <th>Date</th>
+                        <th>Total Time</th>
+                        <th>Projects</th>
+                        <th>Languages</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- Se llena dinámicamente -->
+                      <!-- Rows inserted dynamically -->
                     </tbody>
                   </table>
-                </div>
+              </div>
 
-                <!-- Botón de exportar -->
-                <button id="exportBtn" style="margin:16px 0 24px 0;float:right;background:#4fc3f7;color:#23272e;border:none;padding:10px 22px;border-radius:6px;font-weight:bold;cursor:pointer;">
-                  Exportar datos (.json)
-                </button>
+              <div class="table-container">
+                <h2>Most Productive Days Ranking</h2>
+                <table id="rankingTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Total Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Filled dynamically -->
+                  </tbody>
+                </table>
+              </div>
 
-                <script nonce="${nonce}" src="${chartjsUri}"></script>
-                <script nonce="${nonce}" src="${scriptUri}"></script>
+              <!-- Botón de exportar -->
+              <button id="exportBtn" style="margin:16px 0 24px 0;float:right;background:#4fc3f7;color:#23272e;border:none;padding:10px 22px;border-radius:6px;font-weight:bold;cursor:pointer;">
+                Export Data (.json)
+              </button>
+
+              <script nonce="${nonce}" src="${chartjsUri}"></script>
+              <script nonce="${nonce}" src="${scriptUri}"></script>
             </body>
             </html>`;
   }

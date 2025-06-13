@@ -1,14 +1,15 @@
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #1e1e1e;
-  color: #e0e0e0;
+  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+  background: #181c20;
+  color: #e3e6ea;
   margin: 0;
   padding: 0 16px 32px 16px;
 }
 
 h1, h2 {
   color: #4fc3f7;
-  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .summary-cards {
@@ -19,14 +20,23 @@ h1, h2 {
 }
 
 .card {
-  background: #263238;
-  border-radius: 10px;
-  padding: 18px 24px;
+  background: #23272e;
+  border-radius: 14px;
+  padding: 22px 28px;
   min-width: 180px;
   flex: 1 1 180px;
-  color: #fff;
-  box-shadow: 0 1px 4px #0006;
-  font-size: 1.1em;
+  color: #e3e6ea;
+  box-shadow: 0 2px 8px #0005;
+  font-size: 1.15em;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.card .icon {
+  font-size: 2em;
+  color: #4fc3f7;
+  margin-right: 12px;
 }
 
 .container {
@@ -38,11 +48,12 @@ h1, h2 {
 
 .chart-container {
   background: #23272e;
-  border-radius: 12px;
-  padding: 20px;
-  flex: 1 1 320px;
+  border-radius: 14px;
+  padding: 24px;
+  flex: 1 1 340px;
   min-width: 320px;
   box-shadow: 0 2px 8px #0008;
+  margin-bottom: 24px;
 }
 
 .chart-container canvas {
@@ -63,6 +74,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 12px;
+  background: #23272e;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th, td {
@@ -73,14 +87,31 @@ th, td {
 th {
   background: #263238;
   color: #4fc3f7;
+  font-weight: 500;
 }
 
 tr:last-child td {
   border-bottom: none;
 }
 
+button {
+  background: linear-gradient(90deg, #4fc3f7 60%, #81c784 100%);
+  color: #181c20;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px #0003;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #81c784 60%, #4fc3f7 100%);
+}
+
 @media (max-width: 900px) {
-  .container {
+  .summary-cards, .container {
     flex-direction: column;
   }
 }

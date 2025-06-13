@@ -54,18 +54,18 @@ function renderDashboard(data) {
   const topProj =
     Object.entries(projCount).sort((a, b) => b[1] - a[1])[0]?.[0] || "-";
 
-  document.getElementById(
-    "avgTimeCard"
-  ).innerHTML = `<b>Promedio Diario</b><br>${formatTime(avg)}`;
-  document.getElementById(
-    "topDayCard"
-  ).innerHTML = `<b>Día más productivo</b><br>${topDay || "-"}`;
-  document.getElementById(
-    "topLangCard"
-  ).innerHTML = `<b>Lenguaje más usado</b><br>${topLang}`;
-  document.getElementById(
-    "topProjectCard"
-  ).innerHTML = `<b>Proyecto más trabajado</b><br>${topProj}`;
+  document.querySelector(
+    "#avgTimeCard .text"
+  ).innerHTML = `<b>Average Daily</b><br>${formatTime(avg)}`;
+  document.querySelector(
+    "#topDayCard .text"
+  ).innerHTML = `<b>Most Productive Day</b><br>${topDay || "-"}`;
+  document.querySelector(
+    "#topLangCard .text"
+  ).innerHTML = `<b>Top Language</b><br>${topLang}`;
+  document.querySelector(
+    "#topProjectCard .text"
+  ).innerHTML = `<b>Top Project</b><br>${topProj}`;
 
   // --- Gráficos ---
   // Tiempo por día
@@ -196,6 +196,15 @@ function renderDashboard(data) {
         },
       ],
     },
+    options: {
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: "#b0b8c1" } },
+        y: { grid: { color: "#23272e" }, ticks: { color: "#b0b8c1" } },
+      },
+    },
   });
 
   // --- Comparación de lenguajes ---
@@ -243,24 +252,28 @@ function renderDashboard(data) {
   const today = trendLabels[trendLabels.length - 1];
   const active = data[today]?.totalSeconds || 0;
   const idle = 86400 - active;
-  const activeVsIdleChart = document.getElementById("activeVsIdleChart").getContext("2d");
+  const activeVsIdleChart = document
+    .getElementById("activeVsIdleChart")
+    .getContext("2d");
   new Chart(activeVsIdleChart, {
     type: "doughnut",
     data: {
       labels: ["Activo", "Inactivo"],
-      datasets: [{
-        data: [active, idle > 0 ? idle : 0],
-        backgroundColor: ["#4fc3f7", "#263238"]
-      }]
+      datasets: [
+        {
+          data: [active, idle > 0 ? idle : 0],
+          backgroundColor: ["#4fc3f7", "#263238"],
+        },
+      ],
     },
     options: {
       plugins: {
-        legend: { display: true, position: "bottom" }
+        legend: { display: true, position: "bottom" },
       },
       cutout: "70%", // Hace el donut más delgado y moderno
       responsive: true,
-      maintainAspectRatio: false
-    }
+      maintainAspectRatio: false,
+    },
   });
 }
 
@@ -274,3 +287,12 @@ function formatTime(sec) {
 document.getElementById("exportBtn").onclick = function () {
   vscode.postMessage({ command: "exportData" });
 };
+
+statusBarItem.tooltip = "CodeStats: Click to view the dashboard";
+statusBarItem.text = `$(watch) Today: ${hours}h ${minutes}m`;
+
+context.subscriptions.push(
+  vscode.commands.registerCommand("codestats.viewDashboard", () => {
+    DashboardPanel.createOrShow(context);
+  })
+);
