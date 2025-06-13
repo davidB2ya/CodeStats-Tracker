@@ -310,24 +310,28 @@ class DashboardPanel {
               </div>
 
               <div class="table-container">
-                  <h2>Detailed Daily Summary</h2>
-                  <table id="summaryTable">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Total Time</th>
-                        <th>Projects</th>
-                        <th>Languages</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Rows inserted dynamically -->
-                    </tbody>
-                  </table>
+                <div class="table-title">
+                  <span class="table-icon">📋</span> Detailed Daily Summary
+                </div>
+                <table id="summaryTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Total Time</th>
+                      <th>Projects</th>
+                      <th>Languages</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Rows inserted dynamically -->
+                  </tbody>
+                </table>
               </div>
 
               <div class="table-container">
-                <h2>Most Productive Days Ranking</h2>
+                <div class="table-title">
+                  <span class="table-icon">🏆</span> Most Productive Days Ranking
+                </div>
                 <table id="rankingTable">
                   <thead>
                     <tr>
