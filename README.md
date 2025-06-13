@@ -56,13 +56,6 @@ Haz clic en el botón **Exportar datos (.json)** en el panel para descargar todo
 
 ---
 
-## Licencia
-
-[MIT](LICENSE)  
-(Agrega un archivo LICENSE si lo deseas)
-
----
-
 ## Autor
 
 David Bedoya
