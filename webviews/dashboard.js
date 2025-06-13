@@ -1,148 +1,160 @@
-(function () {
-  const vscode = acquireVsCodeApi();
-  let timeChart, langChart, projectChart;
+window.addEventListener("message", (event) => {
+  const message = event.data;
+  if (message.command === "updateData") {
+    renderDashboard(message.data);
+  }
+  if (message.command === "downloadData") {
+    // Descarga el archivo JSON
+    const blob = new Blob([JSON.stringify(message.data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "codestats-data.json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
+  }
+});
 
-  // Pedir datos al cargar el panel
+window.onload = () => {
+  vscode = acquireVsCodeApi();
   vscode.postMessage({ command: "getData" });
+};
 
-  // Escuchar mensajes desde la extensión
-  window.addEventListener("message", (event) => {
-    const message = event.data;
-    if (message.command === "updateData") {
-      renderCharts(message.data);
-      renderTable(message.data);
+function renderDashboard(data) {
+  // --- Resumen ---
+  const days = Object.keys(data).sort();
+  let total = 0,
+    max = 0,
+    topDay = "",
+    langCount = {},
+    projCount = {};
+  days.forEach((day) => {
+    const d = data[day];
+    total += d.totalSeconds || 0;
+    if ((d.totalSeconds || 0) > max) {
+      max = d.totalSeconds;
+      topDay = day;
+    }
+    for (const l in d.languages) {
+      langCount[l] = (langCount[l] || 0) + d.languages[l];
+    }
+    for (const p in d.projects) {
+      projCount[p] = (projCount[p] || 0) + d.projects[p];
     }
   });
+  const avg = days.length ? total / days.length : 0;
+  const topLang =
+    Object.entries(langCount).sort((a, b) => b[1] - a[1])[0]?.[0] || "-";
+  const topProj =
+    Object.entries(projCount).sort((a, b) => b[1] - a[1])[0]?.[0] || "-";
 
-  function formatTime(seconds) {
-    if (!seconds) {
-      return "0m";
-    }
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    return `${h > 0 ? `${h}h ` : ""}${m}m`;
-  }
+  document.getElementById(
+    "avgTimeCard"
+  ).innerHTML = `<b>Promedio Diario</b><br>${formatTime(avg)}`;
+  document.getElementById(
+    "topDayCard"
+  ).innerHTML = `<b>Día más productivo</b><br>${topDay || "-"}`;
+  document.getElementById(
+    "topLangCard"
+  ).innerHTML = `<b>Lenguaje más usado</b><br>${topLang}`;
+  document.getElementById(
+    "topProjectCard"
+  ).innerHTML = `<b>Proyecto más trabajado</b><br>${topProj}`;
 
-  function renderCharts(data) {
-    const today = new Date().toISOString().slice(0, 10);
-    const todayData = data[today] || { projects: {}, languages: {} };
-
-    // Datos para el gráfico de tiempo
-    const timeLabels = Object.keys(data).sort();
-    const timeData = timeLabels.map(
-      (label) => (data[label].totalSeconds || 0) / 3600
-    ); // en horas
-
-    // Datos para los gráficos de tarta
-    const langData = todayData.languages;
-    const projectData = todayData.projects;
-
-    // Renderizar gráfico de tiempo
-    const timeCtx = document.getElementById("timeChart").getContext("2d");
-    if (timeChart) {
-      timeChart.destroy();
-    }
-    timeChart = new Chart(timeCtx, {
-      type: "bar",
-      data: {
-        labels: timeLabels.map((l) =>
-          new Date(l).toLocaleDateString("es-ES", {
-            weekday: "short",
-            day: "numeric",
-          })
-        ),
-        datasets: [
-          {
-            label: "Horas de codificación",
-            data: timeData,
-            backgroundColor: "rgba(54, 162, 235, 0.6)",
-            borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: { beginAtZero: true, title: { display: true, text: "Horas" } },
+  // --- Gráficos ---
+  // Tiempo por día
+  const timeChart = document.getElementById("timeChart").getContext("2d");
+  new Chart(timeChart, {
+    type: "bar",
+    data: {
+      labels: days,
+      datasets: [
+        {
+          label: "Minutos",
+          data: days.map((d) => Math.round((data[d].totalSeconds || 0) / 60)),
+          backgroundColor: "#4fc3f7",
         },
-        responsive: true,
-        maintainAspectRatio: false,
-      },
-    });
+      ],
+    },
+    options: { plugins: { legend: { display: false } } },
+  });
 
-    // Renderizar gráfico de lenguajes
-    const langCtx = document.getElementById("langChart").getContext("2d");
-    if (langChart) {
-      langChart.destroy();
-    }
-    langChart = new Chart(langCtx, {
-      type: "pie",
-      data: {
-        labels: Object.keys(langData),
-        datasets: [
-          {
-            data: Object.values(langData),
-          },
-        ],
-      },
-      options: { responsive: true, maintainAspectRatio: false },
-    });
+  // Lenguajes hoy
+  const today = days[days.length - 1];
+  const langs = data[today]?.languages || {};
+  const langChart = document.getElementById("langChart").getContext("2d");
+  new Chart(langChart, {
+    type: "doughnut",
+    data: {
+      labels: Object.keys(langs),
+      datasets: [
+        {
+          data: Object.values(langs),
+          backgroundColor: [
+            "#4fc3f7",
+            "#81c784",
+            "#ffb74d",
+            "#e57373",
+            "#ba68c8",
+            "#ffd54f",
+          ],
+        },
+      ],
+    },
+  });
 
-    // Renderizar gráfico de proyectos
-    const projectCtx = document.getElementById("projectChart").getContext("2d");
-    if (projectChart) {
-      projectChart.destroy();
-    }
-    projectChart = new Chart(projectCtx, {
-      type: "doughnut",
-      data: {
-        labels: Object.keys(projectData),
-        datasets: [
-          {
-            data: Object.values(projectData),
-          },
-        ],
-      },
-      options: { responsive: true, maintainAspectRatio: false },
-    });
-  }
+  // Proyectos hoy
+  const projs = data[today]?.projects || {};
+  const projectChart = document.getElementById("projectChart").getContext("2d");
+  new Chart(projectChart, {
+    type: "doughnut",
+    data: {
+      labels: Object.keys(projs),
+      datasets: [
+        {
+          data: Object.values(projs),
+          backgroundColor: [
+            "#4fc3f7",
+            "#81c784",
+            "#ffb74d",
+            "#e57373",
+            "#ba68c8",
+            "#ffd54f",
+          ],
+        },
+      ],
+    },
+  });
 
-  function renderTable(data) {
-    const tableBody = document.querySelector("#summaryTable tbody");
-    tableBody.innerHTML = "";
-    const sortedDates = Object.keys(data).sort(
-      (a, b) => new Date(b) - new Date(a)
-    );
+  // --- Tabla resumen ---
+  const tbody = document.getElementById("summaryTable").querySelector("tbody");
+  tbody.innerHTML = "";
+  days.reverse().forEach((day) => {
+    const d = data[day];
+    tbody.innerHTML += `<tr>
+      <td>${day}</td>
+      <td>${formatTime(d.totalSeconds)}</td>
+      <td>${Object.entries(d.projects)
+        .map(([p, t]) => `${p}: ${formatTime(t)}`)
+        .join("<br>")}</td>
+      <td>${Object.entries(d.languages)
+        .map(([l, t]) => `${l}: ${formatTime(t)}`)
+        .join("<br>")}</td>
+    </tr>`;
+  });
+}
 
-    for (const date of sortedDates) {
-      const dayData = data[date];
-      const row = document.createElement("tr");
+function formatTime(sec) {
+  sec = Math.round(sec || 0);
+  const h = Math.floor(sec / 3600),
+    m = Math.floor((sec % 3600) / 60);
+  return `${h}h ${m}m`;
+}
 
-      const dateCell = document.createElement("td");
-      dateCell.textContent = new Date(date).toLocaleDateString("es-ES", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-      row.appendChild(dateCell);
-
-      const timeCell = document.createElement("td");
-      timeCell.textContent = formatTime(dayData.totalSeconds);
-      row.appendChild(timeCell);
-
-      const projectsCell = document.createElement("td");
-      projectsCell.textContent = Object.entries(dayData.projects || {})
-        .map(([name, sec]) => `${name} (${formatTime(sec)})`)
-        .join(", ");
-      row.appendChild(projectsCell);
-
-      const languagesCell = document.createElement("td");
-      languagesCell.textContent = Object.entries(dayData.languages || {})
-        .map(([name, sec]) => `${name} (${formatTime(sec)})`)
-        .join(", ");
-      row.appendChild(languagesCell);
-
-      tableBody.appendChild(row);
-    }
-  }
-})();
+document.getElementById("exportBtn").onclick = function () {
+  vscode.postMessage({ command: "exportData" });
+};

@@ -136,13 +136,10 @@ class DashboardPanel {
   ) {
     this._panel = panel;
     this._context = context;
+    this._disposables = [];
 
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
-    this._panel.webview.onDidReceiveMessage(
-      (message) => this.handleMessage(message),
-      null,
-      this._disposables
-    );
+    this._setWebviewMessageListener();
 
     this._panel.webview.html = this._getHtmlForWebview();
   }
@@ -187,10 +184,28 @@ class DashboardPanel {
     this._panel.webview.postMessage({ command: "updateData", data: allData });
   }
 
-  private handleMessage(message: any) {
-    if (message.command === "getData") {
-      this.sendData();
-    }
+  private _setWebviewMessageListener() {
+    this._panel.webview.onDidReceiveMessage(
+      async (message) => {
+        if (message.command === "getData") {
+          this.sendData();
+        }
+        if (message.command === "exportData") {
+          // Recopila todos los datos guardados
+          const allKeys = this._context.globalState.keys();
+          const allData: any = {};
+          for (const key of allKeys) {
+            allData[key] = this._context.globalState.get(key);
+          }
+          this._panel.webview.postMessage({
+            command: "downloadData",
+            data: allData,
+          });
+        }
+      },
+      undefined,
+      this._disposables
+    );
   }
 
   public dispose() {
@@ -241,6 +256,13 @@ class DashboardPanel {
             <body>
                 <h1>Panel de Estadísticas</h1>
                 
+                <div class="summary-cards" style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+                  <div class="card" id="avgTimeCard"></div>
+                  <div class="card" id="topDayCard"></div>
+                  <div class="card" id="topLangCard"></div>
+                  <div class="card" id="topProjectCard"></div>
+                </div>
+
                 <div class="container">
                     <div class="chart-container">
                         <h2>Tiempo de Codificación (Últimos 7 días)</h2>
@@ -274,6 +296,11 @@ class DashboardPanel {
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Botón de exportar -->
+                <button id="exportBtn" style="margin:16px 0 24px 0;float:right;background:#4fc3f7;color:#23272e;border:none;padding:10px 22px;border-radius:6px;font-weight:bold;cursor:pointer;">
+                  Exportar datos (.json)
+                </button>
 
                 <script nonce="${nonce}" src="${chartjsUri}"></script>
                 <script nonce="${nonce}" src="${scriptUri}"></script>
