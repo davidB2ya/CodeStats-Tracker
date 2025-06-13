@@ -120,7 +120,7 @@ async function updateStatusBar(
   totalSeconds = totalSeconds ?? 0;
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
-  statusBarItem.text = `$(watch) Hoy: ${hours}h ${minutes}m`;
+  statusBarItem.text = `$(watch) Today: ${hours}h ${minutes}m`;
 }
 
 // Clase para manejar el panel webview del dashboard
@@ -342,9 +342,9 @@ class DashboardPanel {
               </div>
 
               <!-- Botón de exportar -->
-              <button id="exportBtn" style="margin:16px 0 24px 0;float:right;background:#4fc3f7;color:#23272e;border:none;padding:10px 22px;border-radius:6px;font-weight:bold;cursor:pointer;">
+              <!-- <button id="exportBtn" style="margin:16px 0 24px 0;float:right;background:#4fc3f7;color:#23272e;border:none;padding:10px 22px;border-radius:6px;font-weight:bold;cursor:pointer;">
                 Export Data (.json)
-              </button>
+              </button> -->
 
               <script nonce="${nonce}" src="${chartjsUri}"></script>
               <script nonce="${nonce}" src="${scriptUri}"></script>

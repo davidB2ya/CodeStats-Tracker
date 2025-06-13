@@ -13,7 +13,6 @@
   - Most productive days ranking.
   - Percentage of active vs. inactive time.
   - Detailed daily summary.
-- **Data export** to `.json` file for backup or external analysis.
 - **Modern and responsive interface**.
 
 ---
@@ -41,12 +40,6 @@ In the dashboard you can see:
 - **Daily summary:** Average, most productive day, most used language and project.
 - **Charts:** Weekly/monthly trends, project and language comparison, active vs. inactive time.
 - **Tables:** Detailed daily summary and most productive days ranking.
-
-### 4. Export your data
-
-- Click the **Export data (.json)** button in the dashboard to download your activity history in JSON format.
-
-![Export button](https://imgur.com/fbqoT1K)
 
 ### 5. Customization
 
