@@ -1,6 +1,6 @@
 {
   "name": "codestats-tracker",
-  "displayName": "codestats-tracker",
+  "displayName": "CodeStats Tracker",
   "description": "Una extensión para rastrear el tiempo de codificación y ver estadísticas de productividad.",
   "version": "0.0.1",
   "engines": {
@@ -70,5 +70,6 @@
     "type": "git",
     "url": "https://gitlab.com/Db2ya/codestats-tracker.git"
   },
-  "publisher": "codestats-tracker"
+  "publisher": "codestats-tracker",
+  "icon": "icon.png"
 }

@@ -1,65 +1,73 @@
 # CodeStats Tracker
 
-**CodeStats Tracker** es una extensión para Visual Studio Code que te permite rastrear tu tiempo de codificación, visualizar estadísticas avanzadas de productividad y exportar tus datos para análisis o respaldo.
+**CodeStats Tracker** is an extension for Visual Studio Code that allows you to track your coding time, view advanced productivity statistics, and export your data for analysis or backup.
 
 ---
 
-## Características
+## Features
 
-- **Contador de tiempo de codificación** en la barra de estado.
-- **Panel de estadísticas** con:
-  - Tendencias semanales y mensuales (gráficas de línea).
-  - Comparación entre proyectos y lenguajes (gráficas de barras y dona).
-  - Ranking de días más productivos.
-  - Porcentaje de tiempo activo vs. inactivo.
-  - Resumen diario detallado.
-- **Exportación de datos** a archivo `.json` para respaldo o análisis externo.
-- **Interfaz moderna y responsiva**.
-
----
-
-## Instalación
-
-1. Clona este repositorio o descarga los archivos.
-2. Abre la carpeta en VS Code.
-3. Ejecuta en la terminal:
-   ```sh
-   yarn install
-   yarn run compile
-   ```
-4. Empaqueta la extensión:
-   ```sh
-   vsce package
-   ```
-5. Instala el archivo `.vsix` generado desde la paleta de comandos de VS Code (`Extensiones: Instalar desde VSIX...`).
+- **Coding time counter** in the status bar.
+- **Statistics dashboard** with:
+  - Weekly and monthly trends (line charts).
+  - Project and language comparison (bar and doughnut charts).
+  - Most productive days ranking.
+  - Percentage of active vs. inactive time.
+  - Detailed daily summary.
+- **Data export** to `.json` file for backup or external analysis.
+- **Modern and responsive interface**.
 
 ---
 
-## Uso
+## How to use CodeStats Tracker?
 
-- El contador aparece en la barra de estado inferior.
-- Haz clic en el contador o ejecuta el comando `CodeStats: Ver Panel de Estadísticas` para abrir el panel.
-- Explora las gráficas y tablas para ver tus estadísticas.
-- Usa el botón **Exportar datos (.json)** para descargar tu historial de actividad.
+### 1. Start tracking
+
+- After installing the extension, you will see a counter in the bottom status bar of VS Code showing your coding time for the day.
+- Tracking starts automatically when you edit files in any project.
+
+![Status bar counter](./assets/Count-statusbar.png)
+
+### 2. Open the statistics dashboard
+
+- Click the counter in the status bar, or
+- Press `Ctrl+Shift+P` and run the command:  
+  **CodeStats: View Statistics Dashboard**
+
+  ![Statistics dashboard](./assets/panel.png)
+
+### 3. Explore your statistics
+
+In the dashboard you can see:
+- **Daily summary:** Average, most productive day, most used language and project.
+- **Charts:** Weekly/monthly trends, project and language comparison, active vs. inactive time.
+- **Tables:** Detailed daily summary and most productive days ranking.
+
+### 4. Export your data
+
+- Click the **Export data (.json)** button in the dashboard to download your activity history in JSON format.
+
+![Export button](./assets/btn-export.png)
+
+### 5. Customization
+
+- No initial configuration required.
+- Data is saved automatically and persists even if you close VS Code.
 
 ---
 
-## Exportar datos
+## Contributing
 
-Haz clic en el botón **Exportar datos (.json)** en el panel para descargar todos tus datos de uso en formato JSON.
+Contributions are welcome! You can open issues or pull requests to suggest improvements or report bugs.
 
----
-
-## Contribuir
-
-¡Las contribuciones son bienvenidas! Puedes abrir issues o pull requests para sugerir mejoras o reportar errores.
+Questions or suggestions?  
+Open an issue in the repository or contact the author!
 
 ---
 
-## Autor
+## Author
 
 David Bedoya
 
 ---
 
-¡Gracias por usar CodeStats Tracker!
+Thank you for using CodeStats Tracker!
