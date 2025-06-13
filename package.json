@@ -69,5 +69,6 @@
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/Db2ya/codestats-tracker.git"
-  }
+  },
+  "publisher": "codestats-tracker"
 }
