@@ -63,4 +63,3 @@ David Bedoya
 ---
 
 ¡Gracias por usar CodeStats Tracker!
-CMfRVZMyIMEReOX9a60tXNr2OWBSbEOLRCXE9e3lZV6KYxpel3ExJQQJ99BFACAAAAAAAAAAAAASAZDO1MWq
