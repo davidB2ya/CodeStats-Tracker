@@ -4,6 +4,26 @@ All notable changes to the "codestats-tracker" extension will be documented in t
 
 ---
 
+## [0.0.4] - 2025-06-13
+
+### Added
+- Full English translation for all UI and dashboard texts.
+- Modern, minimalist, and elegant dashboard redesign with icons and improved color palette.
+- Enhanced "Detailed Daily Summary" and "Most Productive Days Ranking" sections with improved table design.
+- Improved documentation and user instructions in README.
+- Better export data feedback and error handling.
+
+### Changed
+- Updated status bar tooltip and command names to English.
+- Refined dashboard layout for better usability and responsiveness.
+
+### Fixed
+- Fixed issues with export functionality and dashboard rendering.
+- Improved compatibility with the latest VS Code versions.
+- Minor bug fixes and performance improvements.
+
+---
+
 ## [0.0.3] - 2025-06-13
 
 ### Added
