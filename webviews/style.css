@@ -1,0 +1,55 @@
+body {
+  font-family: var(--vscode-font-family);
+  color: var(--vscode-foreground);
+  background-color: var(--vscode-editor-background);
+  padding: 20px;
+}
+
+h1,
+h2 {
+  color: var(--vscode-editor-foreground);
+  border-bottom: 1px solid var(--vscode-editor-foreground);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  padding: 15px;
+  background-color: var(--vscode-side-bar-background);
+  border-radius: 5px;
+  border: 1px solid var(--vscode-side-bar-border);
+  height: 350px; /* Altura fija para consistencia */
+}
+
+.table-container {
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--vscode-side-bar-background);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid var(--vscode-editor-background);
+}
+
+thead {
+  background-color: var(--vscode-peek-view-title-background);
+  color: var(--vscode-peek-view-title-foreground);
+}
+
+tbody tr:hover {
+  background-color: var(--vscode-editor-hover-highlight-background);
+}
