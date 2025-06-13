@@ -1,77 +1,72 @@
 # CodeStats Tracker
 
-Una extensión para VS Code que rastrea el tiempo de codificación, muestra estadísticas de productividad y permite exportar tus datos.
+**CodeStats Tracker** es una extensión para Visual Studio Code que te permite rastrear tu tiempo de codificación, visualizar estadísticas avanzadas de productividad y exportar tus datos para análisis o respaldo.
 
 ---
 
-# codestats-tracker README
+## Características
 
-This is the README for your extension "codestats-tracker". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+- **Contador de tiempo de codificación** en la barra de estado.
+- **Panel de estadísticas** con:
+  - Tendencias semanales y mensuales (gráficas de línea).
+  - Comparación entre proyectos y lenguajes (gráficas de barras y dona).
+  - Ranking de días más productivos.
+  - Porcentaje de tiempo activo vs. inactivo.
+  - Resumen diario detallado.
+- **Exportación de datos** a archivo `.json` para respaldo o análisis externo.
+- **Interfaz moderna y responsiva**.
 
 ---
 
-## Following extension guidelines
+## Instalación
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+1. Clona este repositorio o descarga los archivos.
+2. Abre la carpeta en VS Code.
+3. Ejecuta en la terminal:
+   ```sh
+   yarn install
+   yarn run compile
+   ```
+4. Empaqueta la extensión:
+   ```sh
+   vsce package
+   ```
+5. Instala el archivo `.vsix` generado desde la paleta de comandos de VS Code (`Extensiones: Instalar desde VSIX...`).
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+---
 
-## Working with Markdown
+## Uso
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+- El contador aparece en la barra de estado inferior.
+- Haz clic en el contador o ejecuta el comando `CodeStats: Ver Panel de Estadísticas` para abrir el panel.
+- Explora las gráficas y tablas para ver tus estadísticas.
+- Usa el botón **Exportar datos (.json)** para descargar tu historial de actividad.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+---
 
-## For more information
+## Exportar datos
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Haz clic en el botón **Exportar datos (.json)** en el panel para descargar todos tus datos de uso en formato JSON.
 
-**Enjoy!**
+---
+
+## Contribuir
+
+¡Las contribuciones son bienvenidas! Puedes abrir issues o pull requests para sugerir mejoras o reportar errores.
+
+---
+
+## Licencia
+
+[MIT](LICENSE)  
+(Agrega un archivo LICENSE si lo deseas)
+
+---
+
+## Autor
+
+David Bedoya
+
+---
+
+¡Gracias por usar CodeStats Tracker!
