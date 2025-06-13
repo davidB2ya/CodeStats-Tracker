@@ -45,6 +45,13 @@ h1, h2 {
   box-shadow: 0 2px 8px #0008;
 }
 
+.chart-container canvas {
+  max-width: 320px;
+  max-height: 320px;
+  margin: 0 auto;
+  display: block;
+}
+
 .table-container {
   background: #23272e;
   border-radius: 12px;

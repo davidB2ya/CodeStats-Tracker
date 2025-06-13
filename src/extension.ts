@@ -197,10 +197,7 @@ class DashboardPanel {
           for (const key of allKeys) {
             allData[key] = this._context.globalState.get(key);
           }
-          this._panel.webview.postMessage({
-            command: "downloadData",
-            data: allData,
-          });
+          this._panel.webview.postMessage({ command: "downloadData", data: allData });
         }
       },
       undefined,
@@ -278,6 +275,23 @@ class DashboardPanel {
                         <h2>Distribución por Proyecto (Hoy)</h2>
                         <canvas id="projectChart"></canvas>
                     </div>
+
+                    <div class="chart-container">
+                      <h2>Tendencia Semanal/Mensual</h2>
+                      <canvas id="trendChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                      <h2>Comparación de Proyectos</h2>
+                      <canvas id="compareProjectsChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                      <h2>Comparación de Lenguajes</h2>
+                      <canvas id="compareLangsChart"></canvas>
+                    </div>
+                    <div class="chart-container" style="height:340px;">
+                      <h2>Tiempo Activo vs. Inactivo (Hoy)</h2>
+                      <canvas id="activeVsIdleChart" width="320" height="320"></canvas>
+                    </div>
                 </div>
 
                 <div class="table-container">
@@ -295,6 +309,21 @@ class DashboardPanel {
                             <!-- Las filas se insertarán dinámicamente -->
                         </tbody>
                     </table>
+                </div>
+
+                <div class="table-container">
+                  <h2>Ranking de Días Más Productivos</h2>
+                  <table id="rankingTable">
+                    <thead>
+                      <tr>
+                        <th>Fecha</th>
+                        <th>Tiempo Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Se llena dinámicamente -->
+                    </tbody>
+                  </table>
                 </div>
 
                 <!-- Botón de exportar -->
