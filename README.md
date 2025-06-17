@@ -1,9 +1,9 @@
 # CodeStats Tracker
 
-![Version](https://vsmarketplacebadges.dev/version-short/codestats-tracker.codestats-tracker.svg)
-![Installs](https://vsmarketplacebadges.dev/installs/codestats-tracker.codestats-tracker.svg)
-![Rating](https://vsmarketplacebadges.dev/rating/codestats-tracker.codestats-tracker.svg)
-![Downloads](https://vsmarketplacebadges.dev/downloads/codestats-tracker.codestats-tracker.svg)
+![Version](https://vsmarketplacebadges.dev/version-short/codestats-tracker.codestats-tracker.png)
+![Installs](https://vsmarketplacebadges.dev/installs/codestats-tracker.codestats-tracker.png)
+![Rating](https://vsmarketplacebadges.dev/rating/codestats-tracker.codestats-tracker.png)
+![Downloads](https://vsmarketplacebadges.dev/downloads/codestats-tracker.codestats-tracker.png)
 
 ![Made with TypeScript](https://img.shields.io/badge/Made%20with-TypeScript-3178c6?logo=typescript&logoColor=white)
 ![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-007ACC?logo=visual-studio-code)
