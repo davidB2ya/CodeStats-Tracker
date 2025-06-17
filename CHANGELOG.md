@@ -4,6 +4,25 @@ All notable changes to the "codestats-tracker" extension will be documented in t
 
 ---
 
+## [0.1.1] - 2025-06-17
+
+### Added
+- Added error handling for missing or misnamed module files in the dashboard.
+- Improved debug logging to help trace data flow and rendering issues.
+- Added documentation and comments to clarify the modular dashboard structure.
+
+### Changed
+- Improved initialization sequence to ensure dashboard components are always ready before rendering data.
+- Updated README with clearer instructions and new screenshots.
+- Enhanced compatibility with the latest VS Code versions.
+
+### Fixed
+- Fixed an issue where data would not render if the dashboard was not fully initialized.
+- Fixed broken image links in the README for the VS Code Marketplace.
+- Fixed minor UI glitches in the dashboard charts and tables.
+
+---
+
 ## [0.1.0] - 2025-06-17
 
 ### Added
