@@ -2,7 +2,7 @@
   "name": "codestats-tracker",
   "displayName": "CodeStats Tracker",
   "description": "CodeStats Tracker is an extension for Visual Studio Code that allows you to track your coding time, view advanced productivity statistics, and export your data for analysis or backup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "codestats-tracker",
   "author": {
     "name": "David Bedoya Hernández",
