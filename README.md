@@ -5,6 +5,9 @@
 ![Rating](https://vsmarketplacebadges.dev/rating/codestats-tracker.codestats-tracker.svg)
 ![Downloads](https://vsmarketplacebadges.dev/downloads/codestats-tracker.codestats-tracker.svg)
 
+![Made with TypeScript](https://img.shields.io/badge/Made%20with-TypeScript-3178c6?logo=typescript&logoColor=white)
+![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension-007ACC?logo=visual-studio-code)
+
 **CodeStats Tracker** is an extension for Visual Studio Code that allows you to track your coding time, view advanced productivity statistics, and export your data for analysis or backup.
 
 ---
@@ -22,7 +25,7 @@
   - [✨ Main Features](#-main-features)
   - [Contributing](#contributing)
   - [Author](#author)
-  - [License](#license)
+  - [License  ](#license--)
 
 ---
 
@@ -100,17 +103,27 @@ Contributions are welcome! You can open issues or pull requests to suggest impro
 Questions or suggestions?  
 Open an issue in the repository or contact the author!
 
+![Issues](https://img.shields.io/github/issues/davidB2ya/CodeStats-Tracker)
+![Last Commit](https://img.shields.io/github/last-commit/davidB2ya/CodeStats-Tracker)
+![Contributors](https://img.shields.io/github/contributors/davidB2ya/CodeStats-Tracker)
+
 ---
 
 ## Author
+Hi! I'm David Bedoya Hernández, a passionate software developer focused on productivity tools and automation.  
 
-David Bedoya Hernández
+- 📧 [Email](dbedoya0408@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/david-bedoya-hern%C3%A1ndez-520061216/)
+- 🐙 [GitHub](https://github.com/davidB2ya)
+- 🌐 [Portfolio](https://www.devb2ya.com/)
+
+Feel free to reach out for feedback, collaboration, or just to connect!
 
 ---
 
-## License
+## License  ![License](https://img.shields.io/github/license/davidB2ya/CodeStats-Tracker)
 
-[MIT](LICENSE)
+[MIT](LICENSE) 
 
 ---
 
