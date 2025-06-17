@@ -3,6 +3,29 @@
   "displayName": "CodeStats Tracker",
   "description": "CodeStats Tracker is an extension for Visual Studio Code that allows you to track your coding time, view advanced productivity statistics, and export your data for analysis or backup",
   "version": "0.0.4",
+  "publisher": "codestats-tracker",
+  "author": {
+    "name": "David Bedoya Hernández",
+    "email": "dbedoya0408@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/Db2ya/codestats-tracker.git"
+  },
+  "icon": "icon.png",
+  "license": "MIT",
+  "keywords": [
+    "codestats",
+    "tracker",
+    "productivity",
+    "statistics",
+    "coding time",
+    "visual studio code"
+  ],
+  "homepage": "https://gitlab.com/Db2ya/codestats-tracker",
+  "bugs": {
+    "url": "https://gitlab.com/Db2ya/codestats-tracker/-/issues"
+  },
   "engines": {
     "vscode": "^1.101.0"
   },
@@ -17,15 +40,23 @@
     "commands": [
       {
         "command": "codestats.viewDashboard",
-        "title": "CodeStats: Ver Panel de Estadísticas",
+        "title": "View CodeStats Dashboard",
         "category": "CodeStats"
       }
     ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "codestats.viewDashboard",
+          "title": "CodeStats: View Dashboard"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
           "id": "codestats-sidebar",
-          "title": "CodeStats",
+          "title": "CodeStats Tracker",
           "icon": "$(dashboard)"
         }
       ]
@@ -66,10 +97,7 @@
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.5.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/Db2ya/codestats-tracker.git"
-  },
-  "publisher": "codestats-tracker",
-  "icon": "icon.png"
+  "dependencies": {
+    "chart.js": "^4.4.0"
+  }
 }
