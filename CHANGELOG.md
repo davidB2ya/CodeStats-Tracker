@@ -7,23 +7,23 @@ All notable changes to the "codestats-tracker" extension will be documented in t
 ## [0.1.0] - 2025-06-17
 
 ### Added
-- Nueva arquitectura modular para el dashboard: ahora el renderizado de tarjetas, gráficos y tablas se realiza mediante clases y componentes independientes.
-- Soporte para gráficos adicionales: comparación de proyectos, comparación de lenguajes, tendencia semanal/mensual y tiempo activo vs inactivo.
-- Manejo robusto de mensajes entre la extensión y el webview, asegurando que los datos siempre se procesen correctamente.
-- Mejoras en la visualización y estructura del HTML generado dinámicamente.
+- New modular architecture for the dashboard: rendering of cards, charts, and tables is now handled by independent classes and components.
+- Support for additional charts: project comparison, language comparison, weekly/monthly trends, and active vs. idle time.
+- Robust message handling between the extension and the webview, ensuring data is always processed correctly.
+- Improvements in the visualization and structure of dynamically generated HTML.
 
 ### Changed
-- El dashboard ya no utiliza archivos HTML estáticos; el HTML se genera desde TypeScript.
-- Refactorización completa del flujo de datos y renderizado para mayor mantenibilidad y escalabilidad.
-- El código legacy fue reemplazado por módulos modernos y reutilizables.
+- The dashboard no longer uses static HTML files; HTML is now generated from TypeScript.
+- Complete refactor of the data flow and rendering for better maintainability and scalability.
+- Legacy code has been replaced with modern, reusable modules.
 
 ### Removed
-- Eliminados archivos legacy y duplicados: `dashboard.html`, `dashboardPanel.ts` y otros scripts antiguos no utilizados.
-- Eliminados imports y referencias a archivos de constantes no existentes.
+- Removed legacy and duplicate files: `dashboard.html`, `dashboardPanel.ts`, and other unused old scripts.
+- Removed imports and references to non-existent constants files.
 
 ### Fixed
-- Solucionado el problema donde los datos no se mostraban si el mensaje llegaba antes de la inicialización del dashboard.
-- Corregidos errores de rutas y carga de módulos ES6 en el webview.
+- Fixed the issue where data was not displayed if the message arrived before the dashboard was initialized.
+- Fixed path and ES6 module loading errors in the webview.
 
 ---
 
