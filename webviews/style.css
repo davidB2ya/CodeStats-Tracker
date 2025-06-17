@@ -1,7 +1,81 @@
+/* Variables de colores del tema de VS Code */
+:root {
+  /* Colores de fondo */
+  --vscode-editor-background: var(--vscode-editor-background);
+  --vscode-editor-foreground: var(--vscode-editor-foreground);
+  --vscode-sideBar-background: var(--vscode-sideBar-background);
+  --vscode-sideBar-foreground: var(--vscode-sideBar-foreground);
+  --vscode-activityBar-background: var(--vscode-activityBar-background);
+  --vscode-activityBar-foreground: var(--vscode-activityBar-foreground);
+
+  /* Colores de texto */
+  --vscode-foreground: var(--vscode-foreground);
+  --vscode-descriptionForeground: var(--vscode-descriptionForeground);
+  --vscode-errorForeground: var(--vscode-errorForeground);
+
+  /* Colores de botones y controles */
+  --vscode-button-background: var(--vscode-button-background);
+  --vscode-button-foreground: var(--vscode-button-foreground);
+  --vscode-button-hoverBackground: var(--vscode-button-hoverBackground);
+
+  /* Colores de inputs */
+  --vscode-input-background: var(--vscode-input-background);
+  --vscode-input-foreground: var(--vscode-input-foreground);
+  --vscode-input-border: var(--vscode-input-border);
+  --vscode-inputOption-activeBorder: var(--vscode-inputOption-activeBorder);
+
+  /* Colores de selección y focus */
+  --vscode-focusBorder: var(--vscode-focusBorder);
+  --vscode-selection-background: var(--vscode-selection-background);
+
+  /* Colores de listas */
+  --vscode-list-activeSelectionBackground: var(
+    --vscode-list-activeSelectionBackground
+  );
+  --vscode-list-activeSelectionForeground: var(
+    --vscode-list-activeSelectionForeground
+  );
+  --vscode-list-hoverBackground: var(--vscode-list-hoverBackground);
+  --vscode-list-hoverForeground: var(--vscode-list-hoverForeground);
+
+  /* Colores de bordes */
+  --vscode-contrastBorder: var(--vscode-contrastBorder);
+  --vscode-contrastActiveBorder: var(--vscode-contrastActiveBorder);
+
+  /* Colores de badges y notificaciones */
+  --vscode-badge-background: var(--vscode-badge-background);
+  --vscode-badge-foreground: var(--vscode-badge-foreground);
+  --vscode-progressBar-background: var(--vscode-progressBar-background);
+
+  /* My sytles colors */
+  --bg-primary: #0a0e12;
+  --bg-secondary: #1a1f26;
+  --bg-card: #23272e;
+  --bg-card-hover: #2a323c;
+  --accent-primary: #00d4ff;
+  --accent-secondary: #64ffda;
+  --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #64ffda 100%);
+  --text-primary: #ffffff;
+  --text-secondary: #b3c5d1;
+  --text-muted: #7a8a9a;
+  --border-color: #2d3748;
+  --shadow-light: 0 4px 20px rgba(0, 212, 255, 0.1);
+  --shadow-heavy: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos base usando las variables del tema */
 body {
-  font-family: "Segoe UI", "Inter", Arial, sans-serif;
-  background: #181c20;
-  color: #e3e6ea;
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  line-height: 1.4;
   margin: 0;
   padding: 0 16px 32px 16px;
 }
@@ -11,24 +85,30 @@ h2 {
   color: #4fc3f7;
   font-weight: 600;
   letter-spacing: 0.5px;
+  margin: 2rem 0;
+}
+h2 {
+  margin: 0 0 1rem;
 }
 
 .summary-cards {
   display: flex;
-  gap: 24px;
+  gap: 2dvw;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
 .card {
-  background: #23272e;
+  background: var(--bg-card);
   border-radius: 14px;
   padding: 22px 28px;
   min-width: 180px;
   flex: 1 1 180px;
   color: #e3e6ea;
-  box-shadow: 0 2px 10px #0004;
-  border: 1.5px solid #3a4252;
+  /* box-shadow: 0 2px 10px #0004; */
+  box-shadow: var(--shadow-light);
+  border: 1.5px solid var(--vscode-input-border);
+  /* border: 1.5px solid #3a4252; */
   font-size: 1.15em;
   display: flex;
   align-items: center;
@@ -41,6 +121,10 @@ h2 {
   margin-right: 12px;
 }
 
+.card .text {
+  text-transform: capitalize;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -49,13 +133,15 @@ h2 {
 }
 
 .chart-container {
-  background: #23272e;
+  background: var(--bg-card);
   border-radius: 14px;
   padding: 24px;
-  flex: 1 1 340px;
+  flex: 1 1 350px;
   min-width: 320px;
-  box-shadow: 0 2px 10px #0004;
-  border: 1.5px solid #3a4252;
+  box-shadow: var(--shadow-light);
+  border: 1.5px solid var(--vscode-input-border);
+  /* box-shadow: 0 2px 10px #0004;
+  border: 1.5px solid #3a4252; */
 }
 
 .chart-container canvas {
@@ -66,12 +152,14 @@ h2 {
 }
 
 .table-container {
-  background: #23272e;
+  background: var(--bg-card);
   border-radius: 14px;
   padding: 20px;
   margin-bottom: 32px;
-  box-shadow: 0 2px 10px #0004;
-  border: 1.5px solid #3a4252;
+  /* box-shadow: 0 2px 10px #0004;
+  border: 1.5px solid #3a4252; */
+  box-shadow: var(--shadow-light);
+  border: 1.5px solid var(--vscode-input-border);
 }
 
 .table-title {

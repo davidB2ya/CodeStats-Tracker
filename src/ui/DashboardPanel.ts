@@ -162,7 +162,7 @@ export class DashboardPanel {
                 <title>Statistics Dashboard</title>
             </head>
             <body>
-                <h1>Statistics Dashboard CodeStats Tracker.</h1>
+                <h1>CodeStats Tracker Dashboard</h1>
 
               <div class="summary-cards">
                 <div class="card" id="avgTimeCard">
@@ -215,7 +215,7 @@ export class DashboardPanel {
                     <h2>Total Coding Time (Last 7 Days)</h2>
                     <canvas id="totalTimeChart"></canvas>
                   </div>
-                  <div class="chart-container" style="height:380px;">
+                  <div class="chart-container">
                     <h2>Active vs. Inactive Time (Today)</h2>
                     <canvas id="activeVsIdleChart" width="320" height="320"></canvas>
                   </div>
