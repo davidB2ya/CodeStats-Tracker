@@ -4,6 +4,29 @@ All notable changes to the "codestats-tracker" extension will be documented in t
 
 ---
 
+## [0.1.0] - 2025-06-17
+
+### Added
+- Nueva arquitectura modular para el dashboard: ahora el renderizado de tarjetas, gráficos y tablas se realiza mediante clases y componentes independientes.
+- Soporte para gráficos adicionales: comparación de proyectos, comparación de lenguajes, tendencia semanal/mensual y tiempo activo vs inactivo.
+- Manejo robusto de mensajes entre la extensión y el webview, asegurando que los datos siempre se procesen correctamente.
+- Mejoras en la visualización y estructura del HTML generado dinámicamente.
+
+### Changed
+- El dashboard ya no utiliza archivos HTML estáticos; el HTML se genera desde TypeScript.
+- Refactorización completa del flujo de datos y renderizado para mayor mantenibilidad y escalabilidad.
+- El código legacy fue reemplazado por módulos modernos y reutilizables.
+
+### Removed
+- Eliminados archivos legacy y duplicados: `dashboard.html`, `dashboardPanel.ts` y otros scripts antiguos no utilizados.
+- Eliminados imports y referencias a archivos de constantes no existentes.
+
+### Fixed
+- Solucionado el problema donde los datos no se mostraban si el mensaje llegaba antes de la inicialización del dashboard.
+- Corregidos errores de rutas y carga de módulos ES6 en el webview.
+
+---
+
 ## [0.0.4] - 2025-06-13
 
 ### Added
