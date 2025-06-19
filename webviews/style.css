@@ -230,6 +230,40 @@ button:hover {
   background: linear-gradient(90deg, #81c784 60%, #4fc3f7 100%);
 }
 
+.details-row {
+  display: none;
+  background-color: var(--vscode-editor-background);
+}
+
+.details-row.visible {
+  display: table-row;
+}
+
+.details-content {
+  padding: 15px;
+}
+
+.details-section {
+  margin: 10px 0;
+}
+
+.details-section h4 {
+  margin: 5px 0;
+}
+
+.expand-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: none;
+}
+
+.expand-button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}
+
 @media (max-width: 900px) {
   .summary-cards,
   .container {

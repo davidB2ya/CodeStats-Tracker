@@ -40,6 +40,8 @@ export class SummaryTable {
    * @returns {HTMLTableRowElement} Fila de la tabla
    */
   createRow(day, dayData) {
+    console.log("day: ", day);
+    console.log("dayData: ", dayData);
     const row = document.createElement("tr");
 
     const dateCell = document.createElement("td");
@@ -49,10 +51,85 @@ export class SummaryTable {
     totalTimeCell.textContent = formatTime(dayData.totalSeconds);
 
     const projectsCell = document.createElement("td");
-    projectsCell.innerHTML = this.formatObjectEntries(dayData.projects || {});
+    projectsCell.textContent = Object.keys(dayData.projects || {}).length;
 
     const languagesCell = document.createElement("td");
-    languagesCell.innerHTML = this.formatObjectEntries(dayData.languages || {});
+    const languagesEntries = Object.entries(dayData.languages || {});
+    const topLanguages = languagesEntries
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([lang]) => lang);
+    languagesCell.textContent = topLanguages.join(", ");
+
+    const table = document
+      .getElementById("summaryTable")
+      .getElementsByTagName("tbody")[0];
+    table.innerHTML = "";
+
+    data.forEach((dayData) => {
+      // Main row
+      const row = table.insertRow();
+      row.insertCell(0).textContent = new Date(
+        dayData.date
+      ).toLocaleDateString();
+      row.insertCell(1).textContent = formatTime(dayData.totalTime);
+      row.insertCell(2).textContent = Object.keys(dayData.projects).length;
+
+      // Top 3 languages
+      const topLanguages = Object.entries(dayData.languages)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 3)
+        .map(([lang]) => lang)
+        .join(", ");
+      row.insertCell(3).textContent = topLanguages;
+
+      // Details button
+      const actionCell = row.insertCell(4);
+      const detailsButton = document.createElement("button");
+      detailsButton.textContent = "Details";
+      detailsButton.className = "expand-button";
+      actionCell.appendChild(detailsButton);
+
+      // Details row
+      const detailsRow = table.insertRow();
+      detailsRow.className = "details-row";
+      const detailsCell = detailsRow.insertCell(0);
+      detailsCell.colSpan = 5;
+
+      // Create details content
+      detailsCell.innerHTML = `
+      <div class="details-content">
+        <div class="details-section">
+          <h4>Projects Details</h4>
+          ${Object.entries(dayData.projects)
+            .map(
+              ([project, time]) => `
+              <div>${project}: ${formatTime(time)}</div>
+            `
+            )
+            .join("")}
+        </div>
+        <div class="details-section">
+          <h4>Languages Details</h4>
+          ${Object.entries(dayData.languages)
+            .map(
+              ([lang, time]) => `
+              <div>${lang}: ${formatTime(time)}</div>
+            `
+            )
+            .join("")}
+        </div>
+      </div>
+    `;
+
+      // Toggle details visibility
+      detailsButton.addEventListener("click", () => {
+        detailsRow.classList.toggle("visible");
+        detailsButton.textContent = detailsRow.classList.contains("visible")
+          ? "Hide"
+          : "Details";
+      });
+    });
 
     row.appendChild(dateCell);
     row.appendChild(totalTimeCell);

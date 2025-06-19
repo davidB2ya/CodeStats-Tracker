@@ -230,8 +230,9 @@ export class DashboardPanel {
                     <tr>
                       <th>Date</th>
                       <th>Total Time</th>
-                      <th>Projects</th>
-                      <th>Languages</th>
+                      <th>Projects Count</th>
+                      <th>Top Languages</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
