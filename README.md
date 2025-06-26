@@ -49,7 +49,7 @@
 - After installing the extension, you will see a counter in the bottom status bar of VS Code showing your coding time for the day.
 - Tracking starts automatically when you edit files in any project.
 
-![Status bar counter](https://github.com/user-attachments/assets/5d3f76cb-4a02-40f6-8ee6-be943e06bf4e)
+![Status bar counter](https://github.com/user-attachments/assets/af7b436c-a084-43c6-a329-fd0d8feb6420)
 
 ### 2. Open the statistics dashboard
 
@@ -57,8 +57,8 @@
 - Press `Ctrl+Shift+P` and run the command:  
   **CodeStats: View Statistics Dashboard**
 
-  ![Statistics dashboard](https://github.com/user-attachments/assets/d059c74d-ca83-4f76-af32-ad4ff22a5a5f)
-  ![Statistics table](https://github.com/user-attachments/assets/3cb380ee-e592-4979-9b4a-23a9029505ef)
+  ![Statistics dashboard](https://github.com/user-attachments/assets/89fb5bd6-d939-46c9-bc43-f6e7a78a56f0)
+  ![Statistics table](https://github.com/user-attachments/assets/b90853ba-cf84-4743-9307-a27d131b2070)
 
 ### 3. Explore your statistics
 

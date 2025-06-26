@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/Db2ya/codestats-tracker.git"
+    "url": "https://github.com/davidB2ya/CodeStats-Tracker.git"
   },
   "icon": "icon.png",
   "license": "MIT",
@@ -22,9 +22,9 @@
     "coding time",
     "visual studio code"
   ],
-  "homepage": "https://gitlab.com/Db2ya/codestats-tracker",
+  "homepage": "https://github.com/davidB2ya/CodeStats-Tracker",
   "bugs": {
-    "url": "https://gitlab.com/Db2ya/codestats-tracker/-/issues"
+    "url": "https://github.com/davidB2ya/CodeStats-Tracker/-/issues"
   },
   "engines": {
     "vscode": "^1.101.0"
