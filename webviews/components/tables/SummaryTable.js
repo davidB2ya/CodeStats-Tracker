@@ -37,9 +37,12 @@ export class SummaryTable {
    * Crea una fila de la tabla
    * @param {string} day - Fecha del día
    * @param {Object} dayData - Datos del día
-   * @returns {HTMLTableRowElement} Fila de la tabla
+   * @returns {DocumentFragment} Fragmento con la fila principal y la de detalles
    */
   createRow(day, dayData) {
+    const fragment = document.createDocumentFragment();
+
+    // Fila principal
     const row = document.createElement("tr");
 
     const dateCell = document.createElement("td");
@@ -49,17 +52,88 @@ export class SummaryTable {
     totalTimeCell.textContent = formatTime(dayData.totalSeconds);
 
     const projectsCell = document.createElement("td");
-    projectsCell.innerHTML = this.formatObjectEntries(dayData.projects || {});
+    projectsCell.textContent = Object.keys(dayData.projects || {}).length;
 
     const languagesCell = document.createElement("td");
-    languagesCell.innerHTML = this.formatObjectEntries(dayData.languages || {});
+    const languagesEntries = Object.entries(dayData.languages || {});
+    const topLanguages = languagesEntries
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([lang]) => lang);
+    languagesCell.textContent = topLanguages.join(", ");
+
+    // Botón de detalles
+    const actionCell = document.createElement("td");
+    const detailsButton = document.createElement("button");
+    detailsButton.textContent = "Details";
+    detailsButton.className = "expand-button";
+    actionCell.appendChild(detailsButton);
 
     row.appendChild(dateCell);
     row.appendChild(totalTimeCell);
     row.appendChild(projectsCell);
     row.appendChild(languagesCell);
+    row.appendChild(actionCell);
 
-    return row;
+    // Fila de detalles (oculta por defecto)
+    const detailsRow = document.createElement("tr");
+    detailsRow.className = "details-row";
+    detailsRow.style.display = "none";
+    const detailsCell = document.createElement("td");
+    detailsCell.colSpan = 5;
+    detailsCell.innerHTML = `
+      <div class="details-content">
+        <div class="details-columns">
+          <div class="details-section">
+            <h5>Projects</h5>
+            <table class="details-table">
+              <tbody>
+                ${Object.entries(dayData.projects || {})
+        .map(
+          ([project, time]) =>
+            `<tr><td>${project}</td><td>${formatTime(time)}</td></tr>`
+        )
+        .join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="details-section">
+            <h5>Languages</h5>
+            <table class="details-table">
+              <tbody>
+                ${Object.entries(dayData.languages || {})
+        .map(
+          ([lang, time]) =>
+            `<tr><td>${lang}</td><td>${formatTime(time)}</td></tr>`
+        )
+        .join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+    detailsRow.appendChild(detailsCell);
+
+    // Toggle detalles
+    detailsButton.addEventListener("click", () => {
+      // Busca la fila de detalles justo después de la principal
+      const detailsRow = row.nextElementSibling;
+      if (detailsRow && detailsRow.classList.contains("details-row")) {
+        if (detailsRow.style.display === "none") {
+          detailsRow.style.display = "";
+          detailsButton.textContent = "Hide";
+        } else {
+          detailsRow.style.display = "none";
+          detailsButton.textContent = "Details";
+        }
+      }
+    });
+
+    fragment.appendChild(row);
+    fragment.appendChild(detailsRow);
+
+    return fragment;
   }
 
   /**

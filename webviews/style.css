@@ -29,12 +29,8 @@
   --vscode-selection-background: var(--vscode-selection-background);
 
   /* Colores de listas */
-  --vscode-list-activeSelectionBackground: var(
-    --vscode-list-activeSelectionBackground
-  );
-  --vscode-list-activeSelectionForeground: var(
-    --vscode-list-activeSelectionForeground
-  );
+  --vscode-list-activeSelectionBackground: var(--vscode-list-activeSelectionBackground);
+  --vscode-list-activeSelectionForeground: var(--vscode-list-activeSelectionForeground);
   --vscode-list-hoverBackground: var(--vscode-list-hoverBackground);
   --vscode-list-hoverForeground: var(--vscode-list-hoverForeground);
 
@@ -87,6 +83,7 @@ h2 {
   letter-spacing: 0.5px;
   margin: 2rem 0;
 }
+
 h2 {
   margin: 0 0 1rem;
 }
@@ -230,7 +227,92 @@ button:hover {
   background: linear-gradient(90deg, #81c784 60%, #4fc3f7 100%);
 }
 
+.details-row {
+  /* display: none; */
+  background-color: var(--vscode-editor-background);
+}
+
+.details-row.visible {
+  display: table-row;
+}
+
+.details-content {
+  border-radius: 8px;
+  padding: 18px 12px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.details-columns {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.details-section {
+  min-width: 180px;
+  flex: 1;
+}
+
+.details-section h5 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #e3e6ea;
+  font-weight: 600;
+}
+
+.details-section h4 {
+  margin: 5px 0;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.details-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95em;
+}
+
+.details-table tr:last-child td {
+  border-bottom: none;
+}
+
+.expand-button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.expand-button:hover {
+  background: #e0e0e0;
+}
+
+.medal {
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* .rank-1 {
+  background: #fffbe6;
+}
+
+.rank-2 {
+  background: #f0f0f0;
+}
+
+.rank-3 {
+  background: #f9f6f2;
+} */
+
 @media (max-width: 900px) {
+
   .summary-cards,
   .container {
     flex-direction: column;
@@ -241,6 +323,7 @@ button:hover {
   .table-container {
     padding: 16px 4px;
   }
+
   th,
   td {
     padding: 8px 6px;

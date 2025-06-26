@@ -2,6 +2,7 @@ import { DataProcessor } from "../services/DataProcessor.js";
 import { ChartFactory } from "./charts/ChartFactory.js";
 import { SummaryCards } from "./cards/SummaryCards.js";
 import { SummaryTable } from "./tables/SummaryTable.js";
+import { RankingTable } from "./tables/RankingTable.js";
 import { secondsToMinutes, secondsToHours } from "../utils/timeFormatter.js";
 
 /**
@@ -12,7 +13,7 @@ export class Dashboard {
     console.log("Dashboard constructor ejecutado");
     this.charts = new Map();
     this.summaryTable = new SummaryTable();
-    this.rankingTable = new SummaryTable("rankingTable");
+    this.rankingTable = new RankingTable();
   }
 
   /**
@@ -40,7 +41,9 @@ export class Dashboard {
 
     // Renderizar tablas
     this.summaryTable.render(data);
-    this.renderRankingTable(processor);
+
+    const rankingTable = processor.getProductivityRanking(7);
+    this.rankingTable.render(rankingTable);
   }
 
   /**
@@ -59,7 +62,7 @@ export class Dashboard {
     const chart = ChartFactory.createBarChart(canvas, {
       labels: trendData.labels,
       values: trendData.data.map(secondsToMinutes),
-      label: "Minutos",
+      label: "Min",
       backgroundColor: "#4fc3f7",
     });
 
@@ -281,32 +284,6 @@ export class Dashboard {
     });
 
     this.charts.set("totalTimeChart", chart);
-  }
-
-  /**
-   * Renderiza la tabla de ranking de días productivos
-   * @param {DataProcessor} processor
-   */
-  renderRankingTable(processor) {
-    const ranking = processor.getProductivityRanking(7);
-    const tbody = document
-      .getElementById("rankingTable")
-      ?.querySelector("tbody");
-
-    if (!tbody) {
-      return;
-    }
-
-    tbody.innerHTML = "";
-
-    ranking.forEach((item) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${item.day}</td>
-        <td>${formatTime(item.total)}</td>
-      `;
-      tbody.appendChild(row);
-    });
   }
 
   /**

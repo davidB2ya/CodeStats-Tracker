@@ -60,14 +60,6 @@
           "icon": "$(dashboard)"
         }
       ]
-    },
-    "views": {
-      "codestats-sidebar": [
-        {
-          "id": "codestats.summaryView",
-          "name": "Resumen Diario"
-        }
-      ]
     }
   },
   "scripts": {

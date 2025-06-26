@@ -1,4 +1,4 @@
-import { formatTime } from "../../../src/dashboard/utils/timeFormatter.js";
+import { formatTime } from "../../utils/timeFormatter.js";
 
 /**
  * Maneja la tabla de ranking de días productivos
@@ -24,28 +24,45 @@ export class RankingTable {
     this.tbody.innerHTML = "";
 
     rankingData.forEach((item, index) => {
-      const row = this.createRankingRow(item, index + 1);
+      const row = this.createRankingRow(item, index + 1, rankingData.length);
       this.tbody.appendChild(row);
     });
+
+    // Añadir tooltips después de renderizar
+    this.addTooltips();
   }
 
   /**
    * Crea una fila del ranking
    * @param {Object} item - Objeto con day y total
    * @param {number} position - Posición en el ranking
+   * @param {number} totalItems - Total de ítems en el ranking
    * @returns {HTMLTableRowElement} Fila de la tabla
    */
-  createRankingRow(item, position) {
+  createRankingRow(item, position, totalItems) {
     const row = document.createElement("tr");
 
+    console.log("Position Item =>", position, item)
     // Añadir clase especial para los primeros 3 puestos
-    if (position <= 3) {
+    if (position <= 3 && totalItems >= 3) {
       row.classList.add(`rank-${position}`);
     }
 
     const positionCell = document.createElement("td");
-    positionCell.textContent = `#${position}`;
     positionCell.classList.add("position-cell");
+
+    // Medallas para los primeros 3 puestos
+    const medals = {
+      1: "🥇",
+      2: "🥈",
+      3: "🥉",
+    };
+    const icon = medals[position] || "#️⃣";
+    if (position <= 3 && totalItems >= 3) {
+      positionCell.innerHTML = `<span class="medal">${icon}</span> #${position}`;
+    } else {
+      positionCell.innerHTML = `<span class="medal">${icon}</span> #${position}`;
+    }
 
     const dateCell = document.createElement("td");
     dateCell.textContent = item.day;
@@ -54,36 +71,11 @@ export class RankingTable {
     totalTimeCell.textContent = formatTime(item.total);
     totalTimeCell.classList.add("time-cell");
 
-    // Añadir medalla para los primeros 3 puestos
-    if (position <= 3) {
-      const medal = this.createMedal(position);
-      positionCell.appendChild(medal);
-    }
-
     row.appendChild(positionCell);
     row.appendChild(dateCell);
     row.appendChild(totalTimeCell);
 
     return row;
-  }
-
-  /**
-   * Crea un elemento de medalla
-   * @param {number} position - Posición (1, 2, o 3)
-   * @returns {HTMLElement} Elemento de medalla
-   */
-  createMedal(position) {
-    const medal = document.createElement("span");
-    medal.classList.add("medal");
-
-    const medals = {
-      1: "🥇",
-      2: "🥈",
-      3: "🥉",
-    };
-
-    medal.textContent = medals[position] || "";
-    return medal;
   }
 
   /**

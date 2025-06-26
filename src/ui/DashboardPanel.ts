@@ -230,8 +230,9 @@ export class DashboardPanel {
                     <tr>
                       <th>Date</th>
                       <th>Total Time</th>
-                      <th>Projects</th>
-                      <th>Languages</th>
+                      <th>Projects Count</th>
+                      <th>Top Languages</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -247,6 +248,7 @@ export class DashboardPanel {
                 <table id="rankingTable">
                   <thead>
                     <tr>
+                      <th>Position</th>
                       <th>Date</th>
                       <th>Total Time</th>
                     </tr>

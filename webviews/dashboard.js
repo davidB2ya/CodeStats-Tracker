@@ -44,29 +44,6 @@ function initializeDashboard() {
 
 window.addEventListener("load", initializeDashboard);
 
-console.log("dashboard.js cargado");
-
-/**
- * Inicialización del dashboard
- */
-// function initializeDashboard() {
-//   messageHandler = new MessageHandler();
-
-//   // Procesa mensajes pendientes si los hay
-//   if (window._pendingMessages && messageHandler) {
-//     window._pendingMessages.forEach((msg) => messageHandler.handleMessage(msg));
-//     window._pendingMessages = [];
-//   }
-
-//   vscode = messageHandler.getVSCodeAPI();
-
-//   // Configurar el botón de exportación
-//   // setupExportButton();
-
-//   // Configurar redimensionamiento de ventana
-//   setupWindowResize();
-// }
-
 /**
  * Configura el botón de exportación
  */
