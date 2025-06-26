@@ -21,7 +21,7 @@
     - [2. Open the statistics dashboard](#2-open-the-statistics-dashboard)
     - [3. Explore your statistics](#3-explore-your-statistics)
     - [5. Customization](#5-customization)
-  - [🚀 What's New in Version 0.1.1](#-whats-new-in-version-011)
+  - [🚀 What's New in Version 0.1.2](#-whats-new-in-version-012)
   - [✨ Main Features](#-main-features)
   - [Contributing](#contributing)
   - [Author](#author)
@@ -74,16 +74,14 @@ In the dashboard you can see:
 
 ---
 
-## 🚀 What's New in Version 0.1.1
+## 🚀 What's New in Version 0.1.2
 
-- **Modular architecture:** The dashboard has been fully refactored to use modular components, making it easier to maintain and extend.
-- **New charts and visualizations:**
-  - Project and language comparison charts.
-  - Weekly/monthly coding time trends.
-  - Active vs. idle time chart.
-- **Improved data handling:** Communication between the extension and the dashboard is now more robust, ensuring data is always displayed correctly.
-- **Dynamic interface:** The dashboard HTML is now generated dynamically, removing the dependency on static HTML files.
-- **Performance and bug fixes:** Fixed rendering and data loading issues, and removed legacy and duplicate files.
+- **Ranking icons for all positions:** Now every position in the "Most Productive Days Ranking" table displays an icon, not just the top 3.
+- **Multilingual tooltips:** Tooltips for all ranking positions are now available in both English and Spanish.
+- **Improved summary details:** The detailed summary tables have a clearer structure and enhanced styling for better readability.
+- **Table consistency:** Table headers and data columns are now always aligned and consistent.
+- **Refactored ranking logic:** The ranking table logic has been improved for better modularity and clarity, ensuring correct icon and tooltip display for all positions.
+- **Bug fixes:** Fixed issues with the position column, icon display for non-podium positions, and class usage in some views.
 
 ---
 

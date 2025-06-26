@@ -4,6 +4,25 @@ All notable changes to the "codestats-tracker" extension will be documented in t
 
 ---
 
+## [0.1.2] - 2025-06-26
+
+### Added
+- Added icons for all ranking positions (not just top 3) in the "Most Productive Days Ranking" table.
+- Tooltips for all ranking positions, now available in both English and Spanish.
+- Improved visual structure and styling for detailed summary tables.
+
+### Changed
+- Refactored the ranking table logic to ensure correct icon and tooltip display for all positions.
+- Improved consistency between table headers and data columns.
+- Enhanced modularity and clarity of the table rendering code.
+
+### Fixed
+- Fixed an issue where the position column was not displaying correctly in the ranking table.
+- Fixed a bug where the wrong table class was being used in some views.
+- Fixed minor issues with icon display for ranking positions beyond the top 3.
+
+---
+
 ## [0.1.1] - 2025-06-17
 
 ### Added
