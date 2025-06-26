@@ -166,16 +166,16 @@ export class RankingTable {
 
       switch (position) {
         case 1:
-          tooltipText = "¡Tu día más productivo! 🎉";
+          tooltipText = "Your most productive day! 🎉";
           break;
         case 2:
-          tooltipText = "Segundo lugar - ¡Muy bien! 💪";
+          tooltipText = "Second place – Great job! 💪";
           break;
         case 3:
-          tooltipText = "Tercer lugar - ¡Buen trabajo! 👏";
+          tooltipText = "Third place – Well done! 👏";
           break;
         default:
-          tooltipText = `Posición ${position} en productividad`;
+          tooltipText = `Position ${position} in productivity`;
       }
 
       row.title = tooltipText;
